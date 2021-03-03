@@ -10,6 +10,7 @@ public class MunroChallengeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MunroChallengeApplication.class, args);
+		FileReader.readCSV("src/main/resources/data/munrotab_v6.2.csv");
 	}
 
 }

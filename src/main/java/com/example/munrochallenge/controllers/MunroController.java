@@ -20,7 +20,7 @@ public class MunroController {
     @GetMapping("/munros")
     public ResponseEntity<List<Munro>> getAllMunros(){
         FileReader fileReader = new FileReader();
-        ArrayList<HashMap> data = fileReader.readCSV("src/main/resources/data/munrotab_v6.2.csv");
+        ArrayList<String> data = fileReader.readCSV("src/main/resources/data/munrotab_v6.2.csv");
         List<Munro> munros = Munro.createMunroList(data);
         return new ResponseEntity<>(munros, HttpStatus.OK);
     }
