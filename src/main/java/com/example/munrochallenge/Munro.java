@@ -9,11 +9,13 @@ public class Munro {
     private String name;
     private String category;
     private Double height;
+    private String gridReference;
 
-    public Munro(String name, String category, Double height) {
+    public Munro(String name, String category, Double height, String gridReference) {
         this.name = name;
         this.category = category;
         this.height = height;
+        this.gridReference = gridReference;
     }
 
 
@@ -41,20 +43,26 @@ public class Munro {
         this.height = height;
     }
 
+    public String getGridReference() {
+        return gridReference;
+    }
+
+    public void setGridReference(String gridReference) {
+        this.gridReference = gridReference;
+    }
+
     public static List<Munro> createMunroList(ArrayList<String> data){
         List<Munro> munros = new ArrayList<>();
-        String name = "";
-        String category = "";
-        Double height = 0.0;
         for(String row : data) {
             String[] rowList = row.split(",", -1);
             if(!rowList[0].isEmpty()){
-                 name = rowList[6];
-                 category = rowList[25];
-                 height = Double.parseDouble(rowList[10]);
+                 String name = rowList[6];
+                 String category = rowList[25];
+                 Double height = Double.parseDouble(rowList[10]);
+                 String gridReference = rowList[14];
+                 Munro munro = new Munro(name, category, height, gridReference);
+                 munros.add(munro);
             }
-            Munro munro = new Munro(name, category, height);
-            munros.add(munro);
         }
         return munros;
 
