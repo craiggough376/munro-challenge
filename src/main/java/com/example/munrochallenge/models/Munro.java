@@ -1,7 +1,8 @@
-package com.example.munrochallenge;
+package com.example.munrochallenge.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Munro {
@@ -55,7 +56,7 @@ public class Munro {
         List<Munro> munros = new ArrayList<>();
         for(String row : data) {
             String[] rowList = row.split(",", -1);
-            if(!rowList[0].isEmpty()){
+            if(!rowList[0].isEmpty() && !rowList[25].isEmpty()){
                  String name = rowList[6];
                  String category = rowList[25];
                  Double height = Double.parseDouble(rowList[10]);
@@ -66,6 +67,21 @@ public class Munro {
         }
         return munros;
 
+    }
+
+    public static List<Munro> sortByName(List<Munro> munros, Boolean ascending){
+
+        Collections.sort(munros, new Comparator<Munro>() {
+            @Override
+            public int compare(Munro munro1, Munro munro2) {
+                if(ascending) {
+                    return munro1.getName().compareToIgnoreCase(munro2.getName());
+                }else{
+                    return munro2.getName().compareToIgnoreCase(munro1.getName());
+                }
+            }
+        });
+        return munros;
     }
 
 }
